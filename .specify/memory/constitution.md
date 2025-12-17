@@ -1,55 +1,150 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Physical AI Textbook Constitution
+
+<!--
+Sync Impact Report (Constitution v1.0.0):
+- Version change: [TEMPLATE] → 1.0.0
+- Initial constitution creation for AI-Native Textbook project
+- Added principles: Content Modularity, Technical Accuracy, Docusaurus Standards, Pedagogical Structure, Version Control Ready, Physical AI Focus
+- Added sections: Content Standards, Development Workflow, Governance
+- Templates flagged for review:
+  ✅ spec-template.md (aligned with modular content requirements)
+  ✅ plan-template.md (aligned with constitution check references)
+  ✅ tasks-template.md (aligned with independent testable components)
+- Follow-up: None
+- Rationale: New project initialization - all principles are foundational requirements
+-->
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Content Modularity
+Every chapter MUST be self-contained, independently readable, and versioned. Chapters MUST NOT depend on forward references except where explicitly cross-referenced. Each module consists of multiple chapters, each chapter contains digestible sections. No chapter exceeds 3000 words without subdivision.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+**Rationale**: Educational content must support non-linear learning paths and allow instructors to remix materials.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Technical Accuracy (NON-NEGOTIABLE)
+All robotics APIs, ROS 2 interfaces, NVIDIA Isaac features, and simulation physics MUST be verified against official documentation. No invented APIs, fake package names, or hallucinated parameters. When uncertain, mark with `[NEEDS VERIFICATION]` and cite source requirements.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: Inaccurate technical content in educational materials causes student frustration, wasted lab time, and loss of trust.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. Docusaurus Standards
+Every content file MUST be Docusaurus-compatible (.md or .mdx), include proper front-matter (title, description, sidebar_position), and follow GitHub Pages deployment requirements. Code blocks MUST specify language for syntax highlighting. Diagrams MUST use Mermaid or ASCII art.
 
-### [PRINCIPLE_6_NAME]
+**Rationale**: Consistency enables automated deployment, searchability, and professional presentation.
 
+### IV. Pedagogical Structure
+Each chapter MUST include: (1) Learning Objectives, (2) Conceptual Explanation, (3) Code Examples, (4) Hands-On Exercises, (5) Comprehension Questions. Concepts progress from foundational to advanced. Real-world robotics applications anchor abstract concepts.
 
-[PRINCIPLE__DESCRIPTION]
+**Rationale**: Structured pedagogy maximizes retention and enables self-paced learning.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### V. Version Control Ready
+Content MUST be granular (one chapter = one file), commit messages MUST reference chapter/module numbers, and changes MUST be reviewable by educators. Each commit represents a complete pedagogical unit (not mid-sentence edits).
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**Rationale**: Multiple authors and reviewers require clean diff histories and atomic changes.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### VI. Physical AI Focus
+All content MUST prioritize embodied intelligence, simulation-to-real transfer, and humanoid robotics use cases. Generic AI/ML content is OUT OF SCOPE unless directly applicable to robot control. Every module includes ROS 2 + simulation + real robot considerations.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**Rationale**: This textbook differentiates itself by bridging digital AI models with physical robotic systems.
+
+## Content Standards
+
+### Code Quality
+- All Python code follows PEP 8
+- ROS 2 code uses rclpy best practices (lifecycle nodes, QoS profiles)
+- URDF/SDF models include comments explaining joint types and inertial properties
+- Launch files use descriptive parameter names
+- Every code block includes explanatory comments for students
+
+### Simulation Fidelity
+- Gazebo examples specify physics engine and time step
+- Unity examples note rendering pipeline and sensor noise models
+- Isaac Sim examples document RTX settings and domain randomization parameters
+- All simulations include "Limitations" subsection explaining sim-to-real gap
+
+### Exercise Design
+- Exercises progress from guided (step-by-step) to open-ended projects
+- Each exercise specifies expected time commitment (15min, 1hr, 3hrs)
+- Capstone projects integrate multiple modules
+- Solutions and rubrics stored separately in `/solutions/` (not in main chapters)
+
+### Terminology Consistency
+- "Humanoid robot" not "humanoid" alone
+- "ROS 2" not "ROS2" or "ROS"
+- "Isaac Sim" for simulation, "Isaac ROS" for accelerated nodes
+- "Vision-Language-Action (VLA)" on first use, then "VLA"
+- Glossary maintained in `/docs/glossary.md`
+
+## Development Workflow
+
+### Content Creation Process
+1. **Specification**: Define chapter scope, learning objectives, prerequisites in `/specs/<module>-<chapter>/spec.md`
+2. **Outline**: Create detailed section outline in `/specs/<module>-<chapter>/plan.md`
+3. **Draft**: Write full chapter with placeholders for unverified APIs (`[NEEDS VERIFICATION]`)
+4. **Verification**: Test all code examples in ROS 2 + simulation environment
+5. **Review**: Educator review for pedagogy, technical accuracy, accessibility
+6. **Integration**: Add to Docusaurus sidebar, update module index, cross-link related chapters
+
+### Quality Gates
+Before merging any chapter:
+- [ ] All code examples execute without errors in target environment (ROS 2 Humble + Gazebo 11 or Isaac Sim)
+- [ ] Learning objectives map to comprehension questions
+- [ ] No `[NEEDS VERIFICATION]` or `[TODO]` markers remain
+- [ ] Front-matter complete (title, description, sidebar_position, tags)
+- [ ] Cross-references use correct relative paths
+- [ ] Spell check passed (technical terms added to dictionary)
+
+### Module Structure (Mandatory)
+```
+docs/
+├── module-1-ros2/
+│   ├── index.md              # Module overview + learning path
+│   ├── ch1-middleware.md
+│   ├── ch2-nodes-topics.md
+│   ├── ch3-urdf-modeling.md
+│   └── exercises/
+│       └── ex1-first-node.md
+├── module-2-simulation/
+│   ├── index.md
+│   ├── ch1-physics.md
+│   └── ...
+└── module-4-vla/
+    ├── index.md
+    ├── capstone-project.md
+    └── ...
+```
+
+### Branching Strategy
+- `main` = published textbook (GitHub Pages deployment)
+- `module-<N>-draft` = work-in-progress module
+- Feature branches: `chapter-<module>-<chapter>-<slug>` (e.g., `chapter-1-3-urdf-basics`)
+- PRs require: (1) educator review, (2) technical accuracy check, (3) all quality gates passed
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### Constitution Authority
+This constitution supersedes all previous content guidelines. Any content violating these principles MUST be rejected or revised before merge. Complexity not justified by pedagogical necessity is forbidden.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+### Amendment Process
+Constitution changes require:
+1. Proposal with educational rationale
+2. Review by lead instructor + technical architect
+3. Version bump (MAJOR for removed principles, MINOR for new principles, PATCH for clarifications)
+4. Migration plan for existing content
+5. Update to all affected templates (spec, plan, tasks)
+
+### Compliance Review
+Every PR is checked against:
+- Technical Accuracy (Principle II)
+- Docusaurus Standards (Principle III)
+- Pedagogical Structure (Principle IV)
+- Physical AI Focus (Principle VI)
+
+Violations are flagged in PR comments with specific constitution reference (e.g., "Violates Principle II: ROS API not verified").
+
+### Complexity Justification
+Any content addition requiring tools/dependencies beyond ROS 2 + Gazebo/Unity + Isaac MUST document:
+- Educational necessity (which learning objective requires it?)
+- Simpler alternatives rejected and why
+- Impact on student setup burden
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-16 | **Last Amended**: 2025-12-16
