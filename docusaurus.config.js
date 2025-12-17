@@ -12,10 +12,10 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://waseem4100.github.io',
+  // For Vercel deployment, using root path
+  url: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // Using '/' for local dev, switch to '/AI-Native-Book/' for GitHub Pages
-  baseUrl: process.env.NODE_ENV === 'production' ? '/AI-Native-Book/' : '/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   organizationName: 'Waseem4100',
