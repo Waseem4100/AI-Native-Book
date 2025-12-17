@@ -12,14 +12,14 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-username.github.io',
+  url: 'https://waseem4100.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // Using '/' for local dev, switch to '/physical-ai-textbook/' for GitHub Pages
-  baseUrl: '/',
+  // Using '/' for local dev, switch to '/AI-Native-Book/' for GitHub Pages
+  baseUrl: process.env.NODE_ENV === 'production' ? '/AI-Native-Book/' : '/',
 
   // GitHub pages deployment config.
-  organizationName: 'your-org',
-  projectName: 'physical-ai-textbook',
+  organizationName: 'Waseem4100',
+  projectName: 'AI-Native-Book',
 
   onBrokenLinks: 'throw',
 
@@ -48,7 +48,7 @@ const config = {
           routeBasePath: '/', // Docs-only mode
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/your-org/physical-ai-textbook/tree/main/',
+            'https://github.com/Waseem4100/AI-Native-Book/tree/master/',
         },
         blog: false, // Disable blog
         theme: {
