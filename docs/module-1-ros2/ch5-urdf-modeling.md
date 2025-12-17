@@ -646,7 +646,7 @@ Without knowing the kinematic structure, MoveIt2 can't plan how to move the arm 
 
 ## Next Steps
 
-**Next Module**: [Module 2: Simulation in Gazebo](../../module-2-gazebo-unity/index) →
+**Next Module**: Module 2: Simulation in Gazebo (Coming Soon)
 
 Complete all exercises before moving on:
 1. **[Exercise 1: Create Your First ROS 2 Node](./exercises/ex1-first-node)**

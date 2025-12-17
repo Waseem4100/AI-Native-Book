@@ -365,7 +365,7 @@ Publish joint states from your controller to visualize movement!
 
 ## Solution
 
-A complete solution is available in [`solutions/module-1/ex2-publisher-subscriber.py`](../../../solutions/module-1/ex2-publisher-subscriber.py).
+A complete solution is available in the `/solutions/module-1/` directory of the repository.
 
 **Try to complete the exercise on your own first!** Refer to:
 - Chapter 2 for publisher/subscriber patterns

@@ -421,7 +421,7 @@ For asymmetric objects, use CAD software to compute inertia.
 
 ## Solution
 
-A complete solution is available in [`solutions/module-1/ex3-urdf-humanoid.urdf`](../../../solutions/module-1/ex3-urdf-humanoid.urdf).
+A complete solution is available in the `/solutions/module-1/` directory of the repository.
 
 **Try to complete the exercise on your own first!** Refer to:
 - Chapter 5 for URDF syntax and examples
@@ -443,7 +443,7 @@ In this exercise, you:
 
 **Congratulations!** You've completed all Module 1 exercises. You're ready for:
 
-**[Module 2: Simulation in Gazebo](../../module-2-gazebo-unity/index)** - Simulate your humanoid with physics →
+**Module 2: Simulation in Gazebo** (Coming Soon) - Simulate your humanoid with physics →
 
 Before moving on:
 1. Verify all three exercise solutions are complete
