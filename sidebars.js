@@ -44,6 +44,29 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Module 2: Physics Simulation',
+      collapsed: true,
+      items: [
+        'module-2-simulation/index',
+        'module-2-simulation/ch1-gazebo-basics',
+        'module-2-simulation/ch2-physics-urdf',
+        'module-2-simulation/ch3-unity-interaction',
+        'module-2-simulation/ch4-sensor-simulation',
+        'module-2-simulation/ch5-complete-simulation',
+        {
+          type: 'category',
+          label: 'Exercises',
+          collapsed: true,
+          items: [
+            'module-2-simulation/exercises/ex1-gazebo-world',
+            'module-2-simulation/exercises/ex2-sensor-setup',
+            'module-2-simulation/exercises/ex3-unity-scene',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Appendix',
       collapsed: true,
       items: [
