@@ -1,11 +1,22 @@
 import React from 'react';
 import { useLocation } from '@docusaurus/router';
 import { useEffect } from 'react';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 // Inline chatbot component for Docusaurus
 function Chatbot() {
   const location = useLocation();
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isClient, setIsClient] = React.useState(false);
+
+  // Only render on client side
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
   const [messages, setMessages] = React.useState([
     {
       role: 'assistant',
@@ -18,9 +29,11 @@ function Chatbot() {
   const [conversationHistory, setConversationHistory] = React.useState([]);
   const messagesEndRef = React.useRef(null);
 
-  const API_BASE_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:8000/api' 
-    : 'https://ai-native-book-backend.herokuapp.com/api';
+  const API_BASE_URL = ExecutionEnvironment.canUseDOM
+    ? (window.location.hostname === 'localhost'
+      ? 'http://localhost:8000/api'
+      : 'https://ai-native-book-backend.herokuapp.com/api')
+    : 'http://localhost:8000/api';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
