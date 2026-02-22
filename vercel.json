@@ -2,5 +2,11 @@
   "buildCommand": "cd docs && npm install && npm run build",
   "outputDirectory": "docs/build",
   "devCommand": "cd docs && npm run start",
-  "installCommand": "cd docs && npm install"
+  "installCommand": "cd docs && npm install",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
