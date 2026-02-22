@@ -1,26 +1,14 @@
 import React from 'react';
-import { useLocation } from '@docusaurus/router';
-import { useEffect } from 'react';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
-// Inline chatbot component for Docusaurus
+// Inline chatbot component for Docusaurus - client-side only
 function Chatbot() {
-  const location = useLocation();
+  // All hooks must be called unconditionally at the top
   const [isExpanded, setIsExpanded] = React.useState(false);
-  const [isClient, setIsClient] = React.useState(false);
-
-  // Only render on client side
-  React.useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
   const [messages, setMessages] = React.useState([
     {
       role: 'assistant',
-      content: "Hello! I'm your AI textbook assistant. I can answer questions about Physical AI & Humanoid Robotics based on the textbook content. What would you like to know?",
+      content: "Hello! I'm your AI textbook assistant. I can answer questions about Physical AI & Humanoid Robotics based on the textbook content.",
       timestamp: new Date(),
     },
   ]);
@@ -29,21 +17,17 @@ function Chatbot() {
   const [conversationHistory, setConversationHistory] = React.useState([]);
   const messagesEndRef = React.useRef(null);
 
-  const API_BASE_URL = ExecutionEnvironment.canUseDOM
-    ? (window.location.hostname === 'localhost'
-      ? 'http://localhost:8000/api'
-      : 'https://ai-native-book-backend.herokuapp.com/api')
-    : 'http://localhost:8000/api';
+  const API_BASE_URL = 'http://localhost:8000/api';
 
-  const scrollToBottom = () => {
+  const scrollToBottom = React.useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  }, []);
 
   React.useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, scrollToBottom]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = React.useCallback(async (e) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
@@ -87,16 +71,21 @@ function Chatbot() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [input, isLoading, conversationHistory]);
 
-  const clearChat = () => {
+  const clearChat = React.useCallback(() => {
     setMessages([{
       role: 'assistant',
       content: "Chat cleared. How can I help you?",
       timestamp: new Date(),
     }]);
     setConversationHistory([]);
-  };
+  }, []);
+
+  // Check if we're on client side (for SSR compatibility)
+  if (!ExecutionEnvironment.canUseDOM) {
+    return null;
+  }
 
   return (
     <div className="chatbot-container">
@@ -117,13 +106,13 @@ function Chatbot() {
               <span>Textbook AI</span>
             </div>
             <div className="chatbot-actions">
-              <button onClick={clearChat} className="chatbot-clear">
+              <button onClick={clearChat} className="chatbot-clear" title="Clear chat">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <path d="M3 6H5H21" stroke="currentColor" strokeWidth="2"/>
                   <path d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6" stroke="currentColor" strokeWidth="2"/>
                 </svg>
               </button>
-              <button onClick={() => setIsExpanded(false)} className="chatbot-close">
+              <button onClick={() => setIsExpanded(false)} className="chatbot-close" aria-label="Close chatbot">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2"/>
                   <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2"/>
@@ -138,7 +127,7 @@ function Chatbot() {
                 <div className="message-content">
                   {msg.content.split('\n').map((line, j) => <p key={j}>{line}</p>)}
                 </div>
-                {msg.sources?.length > 0 && (
+                {msg.sources && msg.sources.length > 0 && (
                   <div className="message-sources">
                     <strong>Sources:</strong>
                     {msg.sources.map((s, j) => (
