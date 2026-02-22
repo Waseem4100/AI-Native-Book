@@ -16,6 +16,16 @@ const config = {
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'ignore',
 
+  // Client modules to run on page load
+  clientModules: [
+    require.resolve('./src/theme/chatbot.css'),
+  ],
+
+  // Custom fields for chatbot configuration
+  customFields: {
+    apiBaseUrl: process.env.DOCS_API_BASE_URL || 'http://localhost:8000/api',
+  },
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
