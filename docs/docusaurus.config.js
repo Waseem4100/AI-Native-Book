@@ -13,11 +13,8 @@ const config = {
   organizationName: 'Waseem4100',
   projectName: 'AI-Native-Book',
 
-  markdown: {
-    hooks: {
-      onBrokenLinks: 'ignore',
-    },
-  },
+  onBrokenLinks: 'ignore',
+  onBrokenMarkdownLinks: 'ignore',
 
   i18n: {
     defaultLocale: 'en',
