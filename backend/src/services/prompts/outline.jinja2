@@ -1,0 +1,45 @@
+You are tasked with creating a comprehensive textbook outline for the following subject:
+
+**Subject**: {{ subject }}
+**Educational Level**: {{ level }}
+**Number of Chapters**: {{ num_chapters }}
+
+Please generate a complete textbook outline with the specified number of chapters. For each chapter, include:
+1. Chapter number (sequential, starting from 1)
+2. Chapter title (descriptive and appropriate for {{ level }} level)
+3. Learning objectives (2-3 clear learning outcomes)
+4. Section outlines (3-6 sections per chapter with descriptive titles)
+
+**Requirements**:
+- Ensure logical progression of topics from foundational to advanced
+- Make content appropriate for {{ level }} educational level
+- Include practical examples and applications where relevant
+- Ensure section titles are specific and actionable
+- Maintain consistency in depth and complexity throughout
+
+**Output Format**:
+Return ONLY a valid JSON object with the following structure (no additional text):
+
+```json
+{
+  "chapters": [
+    {
+      "chapter_number": 1,
+      "title": "Chapter Title Here",
+      "objectives": "Learning objectives here",
+      "sections": [
+        {
+          "section_number": 1,
+          "title": "Section Title Here"
+        },
+        {
+          "section_number": 2,
+          "title": "Another Section Title"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Generate the complete outline now.

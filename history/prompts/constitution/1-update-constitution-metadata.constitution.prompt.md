@@ -1,16 +1,29 @@
-<!-- Sync Impact Report:
-Version change: 2.0.0 → 2.0.1
-Modified principles: None (content unchanged)
-Added sections: None (content unchanged)
-Removed sections: None (content unchanged)
-Templates requiring updates:
-- .specify/templates/plan-template.md: ⚠ pending
-- .specify/templates/spec-template.md: ⚠ pending
-- .specify/templates/tasks-template.md: ⚠ pending
-- .specify/templates/commands/sp.constitution.md: ⚠ pending (file not found)
-- .specify/templates/commands/sp.phr.md: ⚠ pending (file not found)
-Follow-up TODOs: None
--->
+---
+id: 1
+title: Update constitution metadata
+stage: constitution
+date: 2025-12-16
+surface: agent
+model: claude-sonnet-4-5-20250929
+feature: none
+branch: master
+user: UNKNOWN
+command: /sp.constitution
+labels: ["constitution", "metadata", "update"]
+links:
+  spec: null
+  ticket: null
+  adr: null
+  pr: null
+files:
+  - D:\Coding\AI-Native-book\.specify\memory\constitution.md
+tests:
+null
+---
+
+## Prompt
+
+```text
 # 📘 Physical AI & Humanoid Robotics
 ## An AI-Native Textbook for Embodied Intelligence
 
@@ -84,45 +97,7 @@ This book follows a **Progressive Embodied Intelligence Model**:
 Each chapter **MUST**:
 
 - Explain **why** before **how**
-- Connect **software abstractions** to **physical reality**
-- Reinforce **systems thinking**
-
----
-
-## 4. Canonical Book Structure (Immutable)
-
-The textbook **MUST** follow this high-level structure.
-
-### Part I — Foundations of Physical AI
-- Introduction to Physical AI & Embodied Intelligence
-- From Digital Brains to Physical Bodies
-- Humanoid Robotics Landscape
-
-### Part II — The Robotic Nervous System (ROS 2)
-- ROS 2 Architecture & Philosophy
-- Nodes, Topics, Services, and Actions
-- Python Agents with `rclpy`
-- URDF & Robot Description for Humanoids
-
-### Part III — Digital Twins & Simulation
-- Gazebo Physics & Environment Simulation
-- Sensor Simulation (LiDAR, Cameras, IMU)
-- Unity for Human-Robot Interaction
-
-### Part IV — The AI-Robot Brain (NVIDIA Isaac)
-- NVIDIA Isaac Sim & Omniverse
-- Synthetic Data Generation
-- Isaac ROS, VSLAM & Nav2
-- Sim-to-Real Transfer
-
-### Part V — Vision-Language-Action (VLA)
-- Voice-to-Action with Whisper
-- LLM-Driven Cognitive Planning
-- Translating Language into ROS 2 Actions
-
-### Part VI — Humanoid Robotics
-- Humanoid Kinematics & Dynamics
-- Bipedal Locomotion & Balance
+l Locomotion & Balance
 - Manipulation & Grasping
 
 ### Part VII — Conversational Robotics
@@ -159,7 +134,41 @@ Each chapter **MUST** include:
 The embedded chatbot:
 
 - **MUST NOT hallucinate**
-- **MUST refuse** to answer questions outside book scope
+- **MUST re- Connect **software abstractions** to **physical reality**
+- Reinforce **systems thinking**
+
+---
+
+## 4. Canonical Book Structure (Immutable)
+
+The textbook **MUST** follow this high-level structure.
+
+### Part I — Foundations of Physical AI
+- Introduction to Physical AI & Embodied Intelligence
+- From Digital Brains to Physical Bodies
+- Humanoid Robotics Landscape
+
+### Part II — The Robotic Nervous System (ROS 2)
+- ROS 2 Architecture & Philosophy
+- Nodes, Topics, Services, and Actions
+- Python Agents with `rclpy`
+- URDF & Robot Description for Humanoids
+
+### Part III — Digital Twins & Simulation
+- Gazebo Physics & Environment Simulation
+- Sensor Simulation (LiDAR, Cameras, IMU)
+- Unity for Human-Robot Interaction
+
+### Part IV — The AI-Robot Brain (NVIDIA Isaac)
+- NVIDIA Isaac Sim & Omniverse
+- Synthetic Data Generation
+- Isaac ROS, VSLAM & Nav2
+- Sim-to-Real Transfer
+
+### Part V — Vision-Language-Action (VLA)
+- Voice-to-Action with Whisper
+- LLM-Driven Cognitive Planning
+- Translating Language into ROfuse** to answer questions outside book scope
 - **MUST cite** chapter sources internally
 - **MUST prioritize selected text** when provided
 
@@ -239,5 +248,33 @@ If any content, code, agent, or feature:
   → **It must be corrected or removed.**
 
 ---
+```
 
-**Version**: 2.0.1 | **Ratified**: 2025-12-15 | **Last Amended**: 2025-12-16
+## Response snapshot
+
+The constitution has been updated to version `2.0.1`. This is a patch version bump due to an update in the `LAST_AMENDED_DATE` without changes to the core content.
+
+The following templates require manual follow-up to ensure alignment with the updated constitution principles. Note that some files were not found:
+- `.specify/templates/plan-template.md`
+- `.specify/templates/spec-template.md`
+- `.specify/templates/tasks-template.md`
+- `.specify/templates/commands/sp.constitution.md` (file not found)
+- `.specify/templates/commands/sp.phr.md` (file not found)
+- `README.md` (file not found)
+
+Suggested commit message: `docs: amend constitution to v2.0.1 (metadata update)`
+
+## Outcome
+
+- ✅ Impact: The constitution file metadata was updated successfully, and a summary was provided to the user.
+- 🧪 Tests: No tests were run.
+- 📁 Files: `D:\Coding\AI-Native-book\.specify\memory\constitution.md` was modified.
+- 🔁 Next prompts: None.
+- 🧠 Reflection: The operation was a re-execution of an existing constitution update, leading to a patch version bump for metadata.
+
+## Evaluation notes (flywheel)
+
+- Failure modes observed: None.
+- Graders run and results (PASS/FAIL): None.
+- Prompt variant (if applicable): None.
+- Next experiment (smallest change to try): None.
